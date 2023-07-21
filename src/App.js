@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+const express = require("express");
+const bodyParser = require("body-parser");
+const KitchenController = require("./KitchenController");
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const app = express();
+const port = 3000;
 
-export default App;
+app.use(bodyParser.json());
+
+
+app.get("/", (req, res) => {
+  const controller = new KitchenController();
+  controller.convertArrayToJSON(req, res);
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
