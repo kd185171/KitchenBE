@@ -1,3 +1,4 @@
+import json
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
@@ -78,6 +79,6 @@ row2 = df3.iloc[100][:5]
 
 input_2 = [[3,2,23,12,2023],[2,1,23,12,2018],[5,0,23,12,2017],[0,5,23,12,2019],[3,4,23,12,2017]] #[Item Id,Weekday,Day,Month,Year]
 output2 = random_forest1.predict(input_2)
-print(output2)
-# for i in output2:
-#   print(int(i))
+ItemNames = [items[input_2[0][0]],items[input_2[1][0]],items[input_2[2][0]],items[input_2[3][0]],items[input_2[4][0]]]
+data = [{"ItemName": Predicted_ItemNames, "Quantity": int(Predicted_Quantity)} for Predicted_ItemNames, Predicted_Quantity in zip(ItemNames, output2)]
+print(data)

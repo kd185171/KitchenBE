@@ -7,6 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1VtadTSR1ZNNzMBPUl-UTKCCADxWIZxf8
 """
 
+import json
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
@@ -90,7 +91,7 @@ row1 = df2.iloc[100][:5]
 
 input_1 = [[3,21,23,12,2017],[2,21,23,12,2018],[5,21,23,12,2017],[0,21,23,12,2019],[3,21,23,12,2017]] #[Item Id,Hour,Day,Month,Year]
 output = random_forest.predict(input_1)
-print(output)
-# for i in output:
-#    print(int(i))
+ItemNames = [items[input_1[0][0]],items[input_1[1][0]],items[input_1[2][0]],items[input_1[3][0]],items[input_1[4][0]]]
+data = [{"ItemName": Predicted_ItemNames, "Quantity": int(Predicted_Quantity)} for Predicted_ItemNames, Predicted_Quantity in zip(ItemNames, output)]
+print(data)
 
